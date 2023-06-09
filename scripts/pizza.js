@@ -82,7 +82,7 @@ function setTargetPosition() {
   target.y = Math.min(Math.random() * (canvas.height - target.height), canvas.height*0.90 - target.height);
 }
 
-// Draw the rectangle instead of circle
+// Draw the players rectangle on the canvas
 function drawRectangle() {
 
   // Draw the rectangle 
@@ -93,7 +93,7 @@ function drawRectangle() {
   ctx.stroke();
 
 }
-
+// Draw the target rectangle on the canvas
 function drawTarget() {
   // Draw the rectangle for the target
   ctx.beginPath();
@@ -106,7 +106,7 @@ function drawTarget() {
     const timePassed = new Date().getTime() - sliceStartTime;
     const rectWidth = (1 - timePassed / sliceCollectDuration) * (target.width * 2); // The width decreases as time passes
     ctx.fillStyle = 'red';
-    ctx.fillRect(target.x - rectWidth / 2, target.y - target.width * 1.5, rectWidth, 10);
+    ctx.fillRect(target.x + target.width/2 - rectWidth / 2, target.y - 20, rectWidth, 10);
   }
 }  
 
@@ -142,8 +142,8 @@ function collectTarget() {
 
 // The conditions that you use to check whether dimensions are met can be adjusted according to your needs
 function checkDimensions() {
-  positionXMet = Math.abs(rectangle.x - target.x) <= 20;
-  positionYMet = Math.abs(rectangle.y - target.y) <= 20;
+  positionXMet = Math.abs(rectangle.x - target.x) <= 14;
+  positionYMet = Math.abs(rectangle.y - target.y) <= 14;
   lengthMet = Math.abs(rectangle.width - target.width) <= 10;
   widthMet = Math.abs(rectangle.height - target.height) <= 10;
   return [positionXMet, positionYMet, lengthMet, widthMet];
